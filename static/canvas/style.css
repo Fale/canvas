@@ -2,6 +2,10 @@ html, body {
     height: 100%;
 }
 
+.navbar-nav.navbar-right:last-child {
+    margin-right: 0px;
+}
+
 div#content {
     padding-top: 65px;
     padding-bottom: 15px;
