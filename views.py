@@ -9,7 +9,7 @@ def user_logout(request):
 
 @login_required
 def index(request):
-    canvas_list = Canvas.objects.all().order_by('name')
+    canvas_list = Canvas.objects.all().filter(owner=request.user).order_by('name')
     context = {'canvas_list': canvas_list}
     return render(request, 'canvas/index.html', context)
 
