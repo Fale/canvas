@@ -1,3 +1,5 @@
 from django.contrib import admin
+from canvas.models import Canvas, Item
 
-# Register your models here.
+admin.site.register(Canvas)
+admin.site.register(Item)

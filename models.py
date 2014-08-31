@@ -3,6 +3,9 @@ from django.db import models
 class Canvas(models.Model):
     name = models.CharField(max_length = 200)
 
+    class Meta:
+        verbose_name_plural = "Canvasses"
+
 class Item(models.Model):
     BOXES = (
         ('KP', 'Key Partners'),
