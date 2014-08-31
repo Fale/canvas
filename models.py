@@ -22,6 +22,6 @@ class Item(models.Model):
         ('I', 'Infrastructure Management'),
     )
     canvas = models.ForeignKey('Canvas')
-    box = models.CharField(max_lenght = 3, choices = BOXES)
-    bundle = models.CharField(max_lenght = 1, choices = BUNDLES)
+    box = models.CharField(max_length = 3, choices = BOXES)
+    bundle = models.CharField(max_length = 1, choices = BUNDLES)
     title = models.CharField(max_length = 200)
