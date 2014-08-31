@@ -2,10 +2,30 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from canvas.models import Canvas, Item
+from canvas.forms import CanvasForm
 
 def user_logout(request):
     logout(request)
     return redirect('/')
+
+@login_required
+def add(request):
+    if request.method == 'GET':
+        form = CanvasForm()
+    else:
+        form = CanvasForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            owner = request.user
+            canvas = Canvas.objects.create(
+                name = name,
+                owner = owner
+            )
+            return redirect('/')
+
+    return render(request, 'canvas/add.html', {
+        'form': form,
+    })
 
 @login_required
 def index(request):
