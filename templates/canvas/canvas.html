@@ -1,0 +1,112 @@
+{% extends "template.html" %}
+
+{% block content %}
+    <div class="canvas-row" id="canvas-row-1">
+        <div class="canvas-upper-column" id="canvas-column-1">
+            <div class="canvas-box" id="canvas-box-kp">
+                <b>Key Parteners</b>
+                {% if kps %}
+                <ul>
+                    {% for item in kps.all %}
+                    <li>{{ item.title }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+        <div class="canvas-upper-column" id="canvas-column-2">
+            <div class="canvas-box" id="canvas-box-ka">
+                <b>Key Activities</b>
+                {% if kas %}
+                <ul>
+                    {% for item in kas.all %}
+                    <li>{{ item.title }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            <div class="canvas-box" id="canvas-box-kr">
+                <b>Key Resources</b>
+                {% if krs %}
+                <ul>
+                    {% for item in krs.all %}
+                    <li>{{ item.title }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+        <div class="canvas-upper-column" id="canvas-column-3">
+            <div class="canvas-box" id="canvas-box-vp">
+                <b>Value Proposition</b>
+                {% if vps %}
+                <ul>
+                    {% for item in vps.all %}
+                    <li>{{ item.title }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+        <div class="canvas-upper-column" id="canvas-column-4">
+            <div class="canvas-box" id="canvas-box-cr">
+                <b>Customer Relationships</b>
+                {% if crs %}
+                <ul>
+                    {% for item in crs.all %}
+                    <li>{{ item.title }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            <div class="canvas-box" id="canvas-box-ch">
+                <b>Channels</b>
+                {% if chs %}
+                <ul>
+                    {% for item in chs.all %}
+                    <li>{{ item.title }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+        <div class="canvas-upper-column" id="canvas-column-5">
+            <div class="canvas-box" id="canvas-box-cs">
+                <b>Customer Segments</b>
+                {% if css %}
+                <ul>
+                    {% for item in css.all %}
+                    <li>{{ item.title }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="canvas-row" id="canvas-row-2">
+        <div class="canvas-bottom-column" id="canvas-column-6">
+            <div class="canvas-box" id="canvas-box-css">
+                <b>Cost Structure</b>
+                {% if csss %}
+                <ul>
+                    {% for item in csss.all %}
+                    <li>{{ item.title }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+        <div class="canvas-bottom-column" id="canvas-column-7">
+            <div class="canvas-box" id="canvas-box-rss">
+                <b>Revenue Streams</b>
+                {% if rsss %}
+                <ul>
+                    {% for item in rsss.all %}
+                    <li>{{ item.title }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

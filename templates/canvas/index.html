@@ -1,0 +1,13 @@
+{% extends "template.html" %}
+
+{% block content %}
+    {% if canvas_list %}
+        <ul>
+        {% for canvas in canvas_list %}
+            <li><a href="/{{ canvas.id }}/">{{ canvas.name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No canvas are available.</p>
+    {% endif %}
+{% endblock %}
