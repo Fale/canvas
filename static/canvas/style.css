@@ -94,3 +94,16 @@ div#canvas-box-rss {
     border-right: 1px solid black;
 }
 
+/*                              */
+/*   Edit and delete controls   */
+/*                              */
+
+.canvas-item-edit {
+    display: none;
+    cursor: pointer;
+}
+
+.canvas-item-delete {
+    display: none;
+    cursor: pointer;
+}
