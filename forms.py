@@ -1,9 +1,12 @@
-from django import forms
-from canvas.models import BUNDLES
+from django.forms import ModelForm
+from canvas.models import Canvas, Item
 
-class CanvasForm(forms.Form):
-    name = forms.CharField(max_length=200)
+class CanvasForm(ModelForm):
+    class Meta:
+        model = Canvas
+        fields = ['name']
 
-class ItemForm(forms.Form):
-    title = forms.CharField(max_length=200)
-    bundle = forms.CharField(max_length=3, widget=forms.Select(choices=BUNDLES))
+class ItemForm(ModelForm):
+    class Meta:
+        model = Item
+        fields = ['title', 'bundle']

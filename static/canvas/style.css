@@ -6,6 +6,18 @@ html, body {
     margin-right: 0px;
 }
 
+span.canvas-bundle-C {
+    color: #008000;
+}
+
+span.canvas-bundle-I {
+    color: #0000FF;
+}
+
+span.canvas-bundle-P {
+    color: #FF0000;
+}
+
 div#content {
     padding-top: 65px;
     padding-bottom: 15px;

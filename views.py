@@ -39,7 +39,8 @@ def addItem(request, canvas_id, box):
             item = Item.objects.create(
                 title = title,
                 canvas = canvas,
-                box = box
+                box = box,
+                bundle = form.cleaned_data['bundle']
             )
             return redirect('/' + canvas_id)
 

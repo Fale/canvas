@@ -8,7 +8,7 @@
                 {% if kps %}
                 <ul>
                     {% for item in kps.all %}
-                    <li>{{ item.title }}</li>
+                    <li><span class="canvas-bundle-{{ item.bundle }}">{{ item.title }}</span></li>
                     {% endfor %}
                 </ul>
                 {% endif %}
