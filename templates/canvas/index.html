@@ -6,7 +6,7 @@
         <ul>
         {% for canvas in canvas_list %}
         <li class="canvas" id="canvas-{{ canvas.id }}">
-            <a class="canvas-title" id="canvas-{{ canvas.id }}-title">{{ canvas.name }}</a>
+            <a class="canvas-title" id="canvas-{{ canvas.id }}-title" href="/{{ canvas.id }}">{{ canvas.name }}</a>
             <a class="glyphicon glyphicon-pencil canvas-edit" id="canvas-{{ canvas.id }}-edit" href="/{{ canvas.id }}/edit"></a>
             <span class="glyphicon glyphicon-trash canvas-delete" id="canvas-{{ canvas.id }}-delete"></span>
         </li>
