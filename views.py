@@ -5,7 +5,7 @@ from django.utils import simplejson
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
 from canvas.models import Canvas, Item
-from canvas.forms import CanvasForm, ItemForm
+from canvas.forms import CanvasForm, ItemForm, ExtendedItemForm
 
 def user_logout(request):
     logout(request)
@@ -43,6 +43,26 @@ def addItem(request, canvas_id, box):
                 title = title,
                 canvas = canvas,
                 box = box,
+                bundle = form.cleaned_data['bundle']
+            )
+            return redirect('/' + canvas_id)
+
+    return render(request, 'canvas/add.html', {
+        'form': form,
+    })
+
+@login_required
+def editItem(request, canvas_id, item_id):
+    if request.method == 'GET':
+        form = ExtendedItemForm()
+    else:
+        form = ExtendedItemForm(request.POST)
+        if form.is_valid():
+            canvas = Canvas.objects.get(id=canvas_id)
+            item = Item.objects.get(id=item_id).edit(
+                title = form.cleaned_data['title'],
+                canvas = canvas,
+                box = form.cleaned_data['box'],
                 bundle = form.cleaned_data['bundle']
             )
             return redirect('/' + canvas_id)

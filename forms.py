@@ -10,3 +10,8 @@ class ItemForm(ModelForm):
     class Meta:
         model = Item
         fields = ['title', 'bundle']
+
+class ExtendedItemForm(ModelForm):
+    class Meta:
+        model = Item
+        fields = ['title', 'box', 'bundle']
