@@ -107,3 +107,13 @@ div#canvas-box-rss {
     display: none;
     cursor: pointer;
 }
+
+.canvas-edit {
+    display: none;
+    cursor: pointer;
+}
+
+.canvas-delete {
+    display: none;
+    cursor: pointer;
+}

@@ -5,7 +5,11 @@
     {% if canvas_list %}
         <ul>
         {% for canvas in canvas_list %}
-            <li><a href="/{{ canvas.id }}/">{{ canvas.name }}</a></li>
+        <li class="canvas" id="canvas-{{ canvas.id }}">
+            <a class="canvas-title" id="canvas-{{ canvas.id }}-title">{{ canvas.name }}</a>
+            <a class="glyphicon glyphicon-pencil canvas-edit" id="canvas-{{ canvas.id }}-edit" href="/{{ canvas.id }}/edit"></a>
+            <span class="glyphicon glyphicon-trash canvas-delete" id="canvas-{{ canvas.id }}-delete"></span>
+        </li>
         {% endfor %}
         </ul>
     {% else %}

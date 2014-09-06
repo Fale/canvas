@@ -12,25 +12,6 @@ def user_logout(request):
     return redirect('/')
 
 @login_required
-def add(request):
-    if request.method == 'GET':
-        form = CanvasForm()
-    else:
-        form = CanvasForm(request.POST)
-        if form.is_valid():
-            name = form.cleaned_data['name']
-            owner = request.user
-            canvas = Canvas.objects.create(
-                name = name,
-                owner = owner
-            )
-            return redirect('/')
-
-    return render(request, 'canvas/add.html', {
-        'form': form,
-    })
-
-@login_required
 def addItem(request, canvas_id, box):
     if request.method == 'GET':
         form = ItemForm()
@@ -109,4 +90,54 @@ def canvas(request, canvas_id):
         'rsss': canvas.items.filter(box = "RSS"),
     }
     return render(request, 'canvas/canvas.html', context)
-    
+
+@login_required
+def addCanvas(request):
+    if request.method == 'GET':
+        form = CanvasForm()
+    else:
+        form = CanvasForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            owner = request.user
+            canvas = Canvas.objects.create(
+                name = name,
+                owner = owner
+            )
+            return redirect('/')
+
+    return render(request, 'canvas/add.html', {
+        'form': form,
+    })
+
+@login_required
+def editCanvas(request):
+    if request.method == 'GET':
+        form = CanvasForm()
+    else:
+        form = CanvasForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            owner = request.user
+            canvas = Canvas.objects.create(
+                name = name,
+                owner = owner
+            )
+            return redirect('/')
+
+    return render(request, 'canvas/add.html', {
+        'form': form,
+    })
+
+@login_required
+def deleteCanvas(request, canvas_id):
+    try:
+        canvas = Canvas.objects.get(id=canvas_id)
+        if canvas.owner != request.user:
+            raise Exception('canvas is not owned by user')
+    except ObjectDoesNotExist:
+        return HttpResponse('{"status": "error", "code": "item does not exists"}', mimetype='application/json')
+    except Exception as inst:
+        return HttpResponse('{"status": "error", "code": "' + str(inst) + '"}', mimetype='application/json')
+    canvas.delete()
+    return HttpResponse('{"status": "success"}', mimetype='application/json')
