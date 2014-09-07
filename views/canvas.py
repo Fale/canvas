@@ -8,13 +8,13 @@ from canvas.models import Canvas, Item
 from canvas.forms import CanvasForm, ItemForm, ExtendedItemForm
 
 @login_required
-def index(request):
+def list(request):
     canvas_list = Canvas.objects.all().filter(owner=request.user).order_by('name')
     context = {'canvas_list': canvas_list}
     return render(request, 'canvas/index.html', context)
 
 @login_required
-def canvas(request, canvas_id):
+def show(request, canvas_id):
     canvas = get_object_or_404(Canvas, id = canvas_id)
     context = {
         'canvas': canvas,
@@ -31,7 +31,7 @@ def canvas(request, canvas_id):
     return render(request, 'canvas/canvas.html', context)
 
 @login_required
-def addCanvas(request):
+def add(request):
     if request.method == 'GET':
         form = CanvasForm()
     else:
@@ -50,7 +50,7 @@ def addCanvas(request):
     })
 
 @login_required
-def editCanvas(request):
+def edit(request):
     if request.method == 'GET':
         form = CanvasForm()
     else:
@@ -69,7 +69,7 @@ def editCanvas(request):
     })
 
 @login_required
-def deleteCanvas(request, canvas_id):
+def delete(request, canvas_id):
     try:
         canvas = Canvas.objects.get(id=canvas_id)
         if canvas.owner != request.user:

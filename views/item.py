@@ -8,7 +8,7 @@ from canvas.models import Canvas, Item
 from canvas.forms import CanvasForm, ItemForm, ExtendedItemForm
 
 @login_required
-def addItem(request, canvas_id, box):
+def add(request, canvas_id, box):
     if request.method == 'GET':
         form = ItemForm()
     else:
@@ -29,7 +29,7 @@ def addItem(request, canvas_id, box):
     })
 
 @login_required
-def editItem(request, canvas_id, item_id):
+def edit(request, canvas_id, item_id):
     if request.method == 'GET':
         form = ExtendedItemForm()
     else:
@@ -49,7 +49,7 @@ def editItem(request, canvas_id, item_id):
     })
 
 @login_required
-def deleteItem(request, canvas_id, item_id):
+def delete(request, canvas_id, item_id):
     try:
         item = Item.objects.get(id=item_id)
         canvas = Canvas.objects.get(id=canvas_id)
