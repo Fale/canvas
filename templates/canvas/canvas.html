@@ -4,7 +4,7 @@
     <div class="canvas-row" id="canvas-row-1">
         <div class="canvas-upper-column" id="canvas-column-1">
             <div class="canvas-box" id="canvas-box-kp">
-                <b>Key Parteners (<a href="/{{ canvas.id }}/add/KP">Add</a>)</b>
+                <b>Key Parteners (<a href="{% url 'addItem' canvas.id 'KP' %}">Add</a>)</b>
                 {% if kps %}
                 <ul>
                     {% for item in kps.all %}
@@ -20,7 +20,7 @@
         </div>
         <div class="canvas-upper-column" id="canvas-column-2">
             <div class="canvas-box" id="canvas-box-ka">
-                <b>Key Activities (<a href="/{{ canvas.id }}/add/KA">Add</a>)</b>
+                <b>Key Activities (<a href="{% url 'addItem' canvas.id 'KA' %}">Add</a>)</b>
                 {% if kas %}
                 <ul>
                     {% for item in kas.all %}
@@ -30,7 +30,7 @@
                 {% endif %}
             </div>
             <div class="canvas-box" id="canvas-box-kr">
-                <b>Key Resources (<a href="/{{ canvas.id }}/add/KR">Add</a>)</b>
+                <b>Key Resources (<a href="{% url 'addItem' canvas.id 'KR' %}">Add</a>)</b>
                 {% if krs %}
                 <ul>
                     {% for item in krs.all %}
@@ -42,7 +42,7 @@
         </div>
         <div class="canvas-upper-column" id="canvas-column-3">
             <div class="canvas-box" id="canvas-box-vp">
-                <b>Value Proposition (<a href="/{{ canvas.id }}/add/VP">Add</a>)</b>
+                <b>Value Proposition (<a href="{% url 'addItem' canvas.id 'VP' %}">Add</a>)</b>
                 {% if vps %}
                 <ul>
                     {% for item in vps.all %}
@@ -54,7 +54,7 @@
         </div>
         <div class="canvas-upper-column" id="canvas-column-4">
             <div class="canvas-box" id="canvas-box-cr">
-                <b>Customer Relationships (<a href="/{{ canvas.id }}/add/CR">Add</a>)</b>
+                <b>Customer Relationships (<a href="{% url 'addItem' canvas.id 'CR' %}">Add</a>)</b>
                 {% if crs %}
                 <ul>
                     {% for item in crs.all %}
@@ -64,7 +64,7 @@
                 {% endif %}
             </div>
             <div class="canvas-box" id="canvas-box-ch">
-                <b>Channels (<a href="/{{ canvas.id }}/add/CH">Add</a>)</b>
+                <b>Channels (<a href="{% url 'addItem' canvas.id 'CH' %}">Add</a>)</b>
                 {% if chs %}
                 <ul>
                     {% for item in chs.all %}
@@ -76,7 +76,7 @@
         </div>
         <div class="canvas-upper-column" id="canvas-column-5">
             <div class="canvas-box" id="canvas-box-cs">
-                <b>Customer Segments (<a href="/{{ canvas.id }}/add/CS">Add</a>)</b>
+                <b>Customer Segments (<a href="{% url 'addItem' canvas.id 'CS' %}">Add</a>)</b>
                 {% if css %}
                 <ul>
                     {% for item in css.all %}
@@ -90,7 +90,7 @@
     <div class="canvas-row" id="canvas-row-2">
         <div class="canvas-bottom-column" id="canvas-column-6">
             <div class="canvas-box" id="canvas-box-css">
-                <b>Cost Structure (<a href="/{{ canvas.id }}/add/CSS">Add</a>)</b>
+                <b>Cost Structure (<a href="{% url 'addItem' canvas.id 'CSS' %}">Add</a>)</b>
                 {% if csss %}
                 <ul>
                     {% for item in csss.all %}
@@ -102,7 +102,7 @@
         </div>
         <div class="canvas-bottom-column" id="canvas-column-7">
             <div class="canvas-box" id="canvas-box-rss">
-                <b>Revenue Streams (<a href="/{{ canvas.id }}/add/RSS">Add</a>)</b>
+                <b>Revenue Streams (<a href="{% url 'addItem' canvas.id 'RSS' %}">Add</a>)</b>
                 {% if rsss %}
                 <ul>
                     {% for item in rsss.all %}
