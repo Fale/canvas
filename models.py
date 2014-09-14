@@ -14,6 +14,7 @@ BOXES = (
 )
 
 BUNDLES = (
+    ('N', 'None'),
     ('P', 'Product Innovation'),
     ('C', 'Customer Relationship Management'),
     ('I', 'Infrastructure Management'),
