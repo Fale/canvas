@@ -1,0 +1,11 @@
+{% if items %}
+<ul>
+    {% for item in items.all %}
+    <li class="canvas-item" id="item-{{ item.id }}">
+        <span class="canvas-bundle-{{ item.bundle }} canvas-item-title" id="item-{{ item.id }}-title">{{ item.title }}</span>
+        <a class="glyphicon glyphicon-pencil canvas-item-edit" id="item-{{ item.id }}-edit" href="{% url 'editItem' canvas.id item.id  %}"></a>
+        <span class="glyphicon glyphicon-trash canvas-item-delete" id="item-{{ item.id }}-delete"></span>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
