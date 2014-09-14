@@ -3,50 +3,38 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.utils import simplejson
 from django.core.exceptions import ObjectDoesNotExist
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseForbidden
 from canvas.models import Canvas, Item
 from canvas.forms import CanvasForm, ItemForm, ExtendedItemForm
 
 @login_required
-def add(request, canvas_id, box):
-    if request.method == 'GET':
-        form = ItemForm()
+def edit(request, canvas_id, item_id = None, box = None):
+    if item_id:
+        canvas = get_object_or_404(Canvas, pk=canvas_id)
+        item = get_object_or_404(Item, pk=item_id)
+        if item.canvas != canvas:
+            return HttpResponseForbidden()
+        if item.canvas.owner != request.user:
+            return HttpResponseForbidden()
     else:
-        form = ItemForm(request.POST)
+        canvas = get_object_or_404(Canvas, pk=canvas_id)
+        item = Item(canvas=canvas, box=box)
+
+    if request.POST:
+        form = ItemForm(request.POST, instance=item)
         if form.is_valid():
-            title = form.cleaned_data['title']
-            canvas = Canvas.objects.get(id=canvas_id)
-            item = Item.objects.create(
-                title = title,
-                canvas = canvas,
-                box = box,
-                bundle = form.cleaned_data['bundle']
-            )
-            return redirect('/' + canvas_id)
+            form.save()
+            return redirect('showCanvas', canvas_id)
+    else:
+        if item_id:
+            form = ExtendedItemForm(instance=item)
+        else:
+            form = ItemForm(instance=item)
 
     return render(request, 'canvas/add.html', {
         'form': form,
     })
 
-@login_required
-def edit(request, canvas_id, item_id):
-    if request.method == 'GET':
-        form = ExtendedItemForm()
-    else:
-        form = ExtendedItemForm(request.POST)
-        if form.is_valid():
-            canvas = Canvas.objects.get(id=canvas_id)
-            item = Item.objects.get(id=item_id).edit(
-                title = form.cleaned_data['title'],
-                canvas = canvas,
-                box = form.cleaned_data['box'],
-                bundle = form.cleaned_data['bundle']
-            )
-            return redirect('/' + canvas_id)
-
-    return render(request, 'canvas/add.html', {
-        'form': form,
-    })
 
 @login_required
 def delete(request, canvas_id, item_id):

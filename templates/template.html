@@ -14,6 +14,7 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="{% static 'canvas/style.css' %}" rel="stylesheet">
+    <style>{% block style %}{% endblock %}</style>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -33,11 +34,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">Business Empowerement Platform</a>
+          <a class="navbar-brand" href="/">BEP</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="{% ifequal request.path 'canvas/'%} active {% endifequal%}"><a href="canvas">Canvas</a></li>
+            <li class="{% ifequal request.path 'canvas/'%} active {% endifequal%}"><a href="/canvas">Canvas</a></li>
             <li class="{% ifequal request.path 'about/'%} active {% endifequal%}"><a href="#about">About</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">

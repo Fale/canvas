@@ -31,38 +31,21 @@ def show(request, canvas_id):
     return render(request, 'canvas/canvas.html', context)
 
 @login_required
-def add(request):
-    if request.method == 'GET':
-        form = CanvasForm()
+def edit(request, canvas_id = None):
+    if canvas_id:
+        canvas = get_object_or_404(Canvas, pk=canvas_id)
+        if canvas.owner != request.user:
+            return HttpResponseForbidden()
     else:
-        form = CanvasForm(request.POST)
+        canvas = Canvas(owner=request.user)
+
+    if request.POST:
+        form = CanvasForm(request.POST, instance=canvas)
         if form.is_valid():
-            name = form.cleaned_data['name']
-            owner = request.user
-            canvas = Canvas.objects.create(
-                name = name,
-                owner = owner
-            )
-            return redirect('/')
-
-    return render(request, 'canvas/add.html', {
-        'form': form,
-    })
-
-@login_required
-def edit(request):
-    if request.method == 'GET':
-        form = CanvasForm()
+            form.save()
+            return redirect('listCanvas')
     else:
-        form = CanvasForm(request.POST)
-        if form.is_valid():
-            name = form.cleaned_data['name']
-            owner = request.user
-            canvas = Canvas.objects.create(
-                name = name,
-                owner = owner
-            )
-            return redirect('/')
+        form = CanvasForm(instance=canvas)
 
     return render(request, 'canvas/add.html', {
         'form': form,

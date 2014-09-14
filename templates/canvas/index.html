@@ -1,7 +1,7 @@
 {% extends "template.html" %}
 
 {% block content %}
-    <h1>Canvasses (<a href="/add">New</a>)</h1>
+    <h1>Canvasses (<a href="{% url 'addCanvas' %}">Add</a>)</h1>
     {% if canvas_list %}
         <ul>
         {% for canvas in canvas_list %}
