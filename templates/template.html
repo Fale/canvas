@@ -37,12 +37,14 @@
           <a class="navbar-brand" href="/">BEP</a>
         </div>
         <div class="navbar-collapse collapse">
+          {% if user.is_authenticated %}
           <ul class="nav navbar-nav">
             <li class="{% ifequal request.path 'canvas/'%} active {% endifequal%}"><a href="/canvas">Canvas</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/logout">Logout</a></li>
           </ul>
+          {% endif %}
         </div><!--/.nav-collapse -->
     </div>
 

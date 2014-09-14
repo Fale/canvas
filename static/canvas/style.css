@@ -6,6 +6,12 @@ html, body {
     margin-right: 0px;
 }
 
+a.canvas-edit,
+a.canvas-item-edit {
+    color: #000000;
+    text-decoration: none;
+}
+
 span.canvas-bundle-C {
     color: #008000;
 }
