@@ -1,7 +1,7 @@
 {% extends "template.html" %}
 
 {% block content %}
-    <h1>Canvasses (<a href="{% url 'addCanvas' %}">Add</a>)</h1>
+    <h1 class="addable">Canvasses <a class="glyphicon glyphicon-plus" id="add" href="{% url 'addCanvas' %}"></a></h1>
     {% if canvas_list %}
         <ul>
         {% for canvas in canvas_list %}
@@ -15,4 +15,40 @@
     {% else %}
         <p>No canvas are available.</p>
     {% endif %}
+{% endblock %}
+
+
+{% block js %}
+    $(".addable").mouseover(function(){
+        $("#add").show();
+    });
+
+    $(".addable").mouseout(function(){
+        $("#add").hide();
+    });
+
+    $(".canvas").mouseover(function(){
+        var id = $(this).attr('id');
+        $("#" + id + "-edit").show();
+        $("#" + id + "-delete").show();
+    });
+
+    $(".canvas").mouseout(function(){
+        var id = $(this).attr('id');
+        $("#" + id + "-edit").hide();
+        $("#" + id + "-delete").hide();
+    });
+
+    $(".canvas-delete").click(function(){
+        var el = $(this).parent();
+        var id =  $(this).attr('id');
+        var url = $(location).attr('pathname') + id.split('-')[1] + '/delete/';
+        var ajax = $.ajax({
+            type: 'GET',
+            url: url
+        });
+        ajax.complete(function(jqXHR){
+            el.remove();
+        });
+    });
 {% endblock %}

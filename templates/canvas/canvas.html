@@ -1,42 +1,49 @@
 {% extends "template.html" %}
 
+{% block style %}
+    h5 {
+        font-weight: bold;
+        padding-left: 13px;
+    }
+{% endblock %}
+
 {% block content %}
     <div class="canvas-row" id="canvas-row-1">
         <div class="canvas-upper-column" id="canvas-column-1">
             <div class="canvas-box" id="canvas-box-kp">
-                <b>Key Parteners (<a href="{% url 'addItem' canvas.id 'KP' %}">Add</a>)</b>
+                <h5 class="addable" id="addable-kp">Key Parteners <a class="glyphicon glyphicon-plus" id="addable-kp-add" href="{% url 'addItem' canvas.id 'KP' %}"></a></h5>
                 {% include "canvas/itemlist.html" with items=kps %}
             </div>
         </div>
         <div class="canvas-upper-column" id="canvas-column-2">
             <div class="canvas-box" id="canvas-box-ka">
-                <b>Key Activities (<a href="{% url 'addItem' canvas.id 'KA' %}">Add</a>)</b>
+                <h5 class="addable" id="addable-ka">Key Activities <a class="glyphicon glyphicon-plus" id="addable-ka-add" href="{% url 'addItem' canvas.id 'KA' %}"></a></h5>
                 {% include "canvas/itemlist.html" with items=kas %}
             </div>
             <div class="canvas-box" id="canvas-box-kr">
-                <b>Key Resources (<a href="{% url 'addItem' canvas.id 'KR' %}">Add</a>)</b>
+                <h5 class="addable" id="addable-kr">Key Resources <a class="glyphicon glyphicon-plus" id="addable-kr-add" href="{% url 'addItem' canvas.id 'KR' %}"></a></h5>
                 {% include "canvas/itemlist.html" with items=krs %}
             </div>
         </div>
         <div class="canvas-upper-column" id="canvas-column-3">
             <div class="canvas-box" id="canvas-box-vp">
-                <b>Value Proposition (<a href="{% url 'addItem' canvas.id 'VP' %}">Add</a>)</b>
+                <h5 class="addable" id="addable-vp">Value Proposition <a class="glyphicon glyphicon-plus" id="addable-vp-add" href="{% url 'addItem' canvas.id 'VP' %}"></a></h5>
                 {% include "canvas/itemlist.html" with items=vps %}
             </div>
         </div>
         <div class="canvas-upper-column" id="canvas-column-4">
             <div class="canvas-box" id="canvas-box-cr">
-                <b>Customer Relationships (<a href="{% url 'addItem' canvas.id 'CR' %}">Add</a>)</b>
+                <h5 class="addable" id="addable-cr">Customer Relationships <a class="glyphicon glyphicon-plus" id="addable-cr-add" href="{% url 'addItem' canvas.id 'CR' %}"></a></h5>
                 {% include "canvas/itemlist.html" with items=crs %}
             </div>
             <div class="canvas-box" id="canvas-box-ch">
-                <b>Channels (<a href="{% url 'addItem' canvas.id 'CH' %}">Add</a>)</b>
+                <h5 class="addable" id="addable-ch">Channels <a class="glyphicon glyphicon-plus" id="addable-ch-add" href="{% url 'addItem' canvas.id 'CH' %}"></a></h5>
                 {% include "canvas/itemlist.html" with items=chs %}
             </div>
         </div>
         <div class="canvas-upper-column" id="canvas-column-5">
             <div class="canvas-box" id="canvas-box-cs">
-                <b>Customer Segments (<a href="{% url 'addItem' canvas.id 'CS' %}">Add</a>)</b>
+                <h5 class="addable" id="addable-cs">Customer segments <a class="glyphicon glyphicon-plus" id="addable-cs-add" href="{% url 'addItem' canvas.id 'CS' %}"></a></h5>
                 {% include "canvas/itemlist.html" with items=css %}
             </div>
         </div>
@@ -44,15 +51,53 @@
     <div class="canvas-row" id="canvas-row-2">
         <div class="canvas-bottom-column" id="canvas-column-6">
             <div class="canvas-box" id="canvas-box-css">
-                <b>Cost Structure (<a href="{% url 'addItem' canvas.id 'CSS' %}">Add</a>)</b>
+                <h5 class="addable" id="addable-css">Cost Structure <a class="glyphicon glyphicon-plus" id="addable-css-add" href="{% url 'addItem' canvas.id 'CSS' %}"></a></h5>
                 {% include "canvas/itemlist.html" with items=csss %}
             </div>
         </div>
         <div class="canvas-bottom-column" id="canvas-column-7">
             <div class="canvas-box" id="canvas-box-rss">
-                <b>Revenue Streams (<a href="{% url 'addItem' canvas.id 'RSS' %}">Add</a>)</b>
+                <h5 class="addable" id="addable-rss">Revenue Streams <a class="glyphicon glyphicon-plus" id="addable-rss-add" href="{% url 'addItem' canvas.id 'RSS' %}"></a></h5>
                 {% include "canvas/itemlist.html" with items=rsss %}
             </div>
         </div>
     </div>
+{% endblock %}
+
+
+{% block js %}
+    $(".addable").mouseover(function(){
+        var id = $(this).attr('id');
+        $("#" + id + "-add").show();
+    });
+
+    $(".addable").mouseout(function(){
+        var id = $(this).attr('id');
+        $("#" + id + "-add").hide();
+    });
+
+    $(".canvas-item").mouseover(function(){
+        var id = $(this).attr('id');
+        $("#" + id + "-edit").show();
+        $("#" + id + "-delete").show();
+    });
+
+    $(".canvas-item").mouseout(function(){
+        var id = $(this).attr('id');
+        $("#" + id + "-edit").hide();
+        $("#" + id + "-delete").hide();
+    });
+
+    $(".canvas-item-delete").click(function(){
+        var el = $(this).parent();
+        var id =  $(this).attr('id');
+        var url = $(location).attr('pathname') + id.split('-')[1] + '/delete/';
+        var ajax = $.ajax({
+            type: 'GET',
+            url: url
+        });
+        ajax.complete(function(jqXHR){
+            el.remove();
+        });
+    });
 {% endblock %}
