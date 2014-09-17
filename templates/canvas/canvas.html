@@ -8,57 +8,60 @@
 {% endblock %}
 
 {% block content %}
-    <div class="canvas-row" id="canvas-row-1">
-        <div class="canvas-upper-column" id="canvas-column-1">
-            <div class="canvas-box" id="canvas-box-kp">
-                <h5 class="addable" id="addable-kp">Key Parteners <a class="glyphicon glyphicon-plus" id="addable-kp-add" href="{% url 'addItem' canvas.id 'KP' %}"></a></h5>
-                {% include "canvas/itemlist.html" with items=kps %}
+    <h1>{{ canvas.name }} <a href="{% url 'listCanvas' %}" class="glyphicon glyphicon-home"></a></h1>
+    <div style="height:100%; padding-top:69px; margin-top: -69px;" id="canvas">
+        <div class="canvas-row" id="canvas-row-1">
+            <div class="canvas-upper-column" id="canvas-column-1">
+                <div class="canvas-box" id="canvas-box-kp">
+                    <h5 class="addable" id="addable-kp">Key Parteners <a class="glyphicon glyphicon-plus" id="addable-kp-add" href="{% url 'addItem' canvas.id 'KP' %}"></a></h5>
+                    {% include "canvas/itemlist.html" with items=kps %}
+                </div>
+            </div>
+            <div class="canvas-upper-column" id="canvas-column-2">
+                <div class="canvas-box" id="canvas-box-ka">
+                    <h5 class="addable" id="addable-ka">Key Activities <a class="glyphicon glyphicon-plus" id="addable-ka-add" href="{% url 'addItem' canvas.id 'KA' %}"></a></h5>
+                    {% include "canvas/itemlist.html" with items=kas %}
+                </div>
+                <div class="canvas-box" id="canvas-box-kr">
+                    <h5 class="addable" id="addable-kr">Key Resources <a class="glyphicon glyphicon-plus" id="addable-kr-add" href="{% url 'addItem' canvas.id 'KR' %}"></a></h5>
+                    {% include "canvas/itemlist.html" with items=krs %}
+                </div>
+            </div>
+            <div class="canvas-upper-column" id="canvas-column-3">
+                <div class="canvas-box" id="canvas-box-vp">
+                    <h5 class="addable" id="addable-vp">Value Proposition <a class="glyphicon glyphicon-plus" id="addable-vp-add" href="{% url 'addItem' canvas.id 'VP' %}"></a></h5>
+                    {% include "canvas/itemlist.html" with items=vps %}
+                </div>
+            </div>
+            <div class="canvas-upper-column" id="canvas-column-4">
+                <div class="canvas-box" id="canvas-box-cr">
+                    <h5 class="addable" id="addable-cr">Customer Relationships <a class="glyphicon glyphicon-plus" id="addable-cr-add" href="{% url 'addItem' canvas.id 'CR' %}"></a></h5>
+                    {% include "canvas/itemlist.html" with items=crs %}
+                </div>
+                <div class="canvas-box" id="canvas-box-ch">
+                    <h5 class="addable" id="addable-ch">Channels <a class="glyphicon glyphicon-plus" id="addable-ch-add" href="{% url 'addItem' canvas.id 'CH' %}"></a></h5>
+                    {% include "canvas/itemlist.html" with items=chs %}
+                </div>
+            </div>
+            <div class="canvas-upper-column" id="canvas-column-5">
+                <div class="canvas-box" id="canvas-box-cs">
+                    <h5 class="addable" id="addable-cs">Customer segments <a class="glyphicon glyphicon-plus" id="addable-cs-add" href="{% url 'addItem' canvas.id 'CS' %}"></a></h5>
+                    {% include "canvas/itemlist.html" with items=css %}
+                </div>
             </div>
         </div>
-        <div class="canvas-upper-column" id="canvas-column-2">
-            <div class="canvas-box" id="canvas-box-ka">
-                <h5 class="addable" id="addable-ka">Key Activities <a class="glyphicon glyphicon-plus" id="addable-ka-add" href="{% url 'addItem' canvas.id 'KA' %}"></a></h5>
-                {% include "canvas/itemlist.html" with items=kas %}
+        <div class="canvas-row" id="canvas-row-2">
+            <div class="canvas-bottom-column" id="canvas-column-6">
+                <div class="canvas-box" id="canvas-box-css">
+                    <h5 class="addable" id="addable-css">Cost Structure <a class="glyphicon glyphicon-plus" id="addable-css-add" href="{% url 'addItem' canvas.id 'CSS' %}"></a></h5>
+                    {% include "canvas/itemlist.html" with items=csss %}
+                </div>
             </div>
-            <div class="canvas-box" id="canvas-box-kr">
-                <h5 class="addable" id="addable-kr">Key Resources <a class="glyphicon glyphicon-plus" id="addable-kr-add" href="{% url 'addItem' canvas.id 'KR' %}"></a></h5>
-                {% include "canvas/itemlist.html" with items=krs %}
-            </div>
-        </div>
-        <div class="canvas-upper-column" id="canvas-column-3">
-            <div class="canvas-box" id="canvas-box-vp">
-                <h5 class="addable" id="addable-vp">Value Proposition <a class="glyphicon glyphicon-plus" id="addable-vp-add" href="{% url 'addItem' canvas.id 'VP' %}"></a></h5>
-                {% include "canvas/itemlist.html" with items=vps %}
-            </div>
-        </div>
-        <div class="canvas-upper-column" id="canvas-column-4">
-            <div class="canvas-box" id="canvas-box-cr">
-                <h5 class="addable" id="addable-cr">Customer Relationships <a class="glyphicon glyphicon-plus" id="addable-cr-add" href="{% url 'addItem' canvas.id 'CR' %}"></a></h5>
-                {% include "canvas/itemlist.html" with items=crs %}
-            </div>
-            <div class="canvas-box" id="canvas-box-ch">
-                <h5 class="addable" id="addable-ch">Channels <a class="glyphicon glyphicon-plus" id="addable-ch-add" href="{% url 'addItem' canvas.id 'CH' %}"></a></h5>
-                {% include "canvas/itemlist.html" with items=chs %}
-            </div>
-        </div>
-        <div class="canvas-upper-column" id="canvas-column-5">
-            <div class="canvas-box" id="canvas-box-cs">
-                <h5 class="addable" id="addable-cs">Customer segments <a class="glyphicon glyphicon-plus" id="addable-cs-add" href="{% url 'addItem' canvas.id 'CS' %}"></a></h5>
-                {% include "canvas/itemlist.html" with items=css %}
-            </div>
-        </div>
-    </div>
-    <div class="canvas-row" id="canvas-row-2">
-        <div class="canvas-bottom-column" id="canvas-column-6">
-            <div class="canvas-box" id="canvas-box-css">
-                <h5 class="addable" id="addable-css">Cost Structure <a class="glyphicon glyphicon-plus" id="addable-css-add" href="{% url 'addItem' canvas.id 'CSS' %}"></a></h5>
-                {% include "canvas/itemlist.html" with items=csss %}
-            </div>
-        </div>
-        <div class="canvas-bottom-column" id="canvas-column-7">
-            <div class="canvas-box" id="canvas-box-rss">
-                <h5 class="addable" id="addable-rss">Revenue Streams <a class="glyphicon glyphicon-plus" id="addable-rss-add" href="{% url 'addItem' canvas.id 'RSS' %}"></a></h5>
-                {% include "canvas/itemlist.html" with items=rsss %}
+            <div class="canvas-bottom-column" id="canvas-column-7">
+                <div class="canvas-box" id="canvas-box-rss">
+                    <h5 class="addable" id="addable-rss">Revenue Streams <a class="glyphicon glyphicon-plus" id="addable-rss-add" href="{% url 'addItem' canvas.id 'RSS' %}"></a></h5>
+                    {% include "canvas/itemlist.html" with items=rsss %}
+                </div>
             </div>
         </div>
     </div>

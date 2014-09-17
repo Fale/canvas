@@ -107,7 +107,13 @@ a.glyphicon-plus {
     font-size: 70%;
 }
 
-.glyphicon {
+a.glyphicon-home {
+    font-size: 70%;
+}
+
+.glyphicon-pencil,
+.glyphicon-plus,
+.glyphicon-trash {
     display: none;
     cursor: pointer;
 }
