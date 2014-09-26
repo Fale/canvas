@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render, get_object_or_404
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, render_to
 from django.contrib.auth import logout
 from django.utils import simplejson
 from django.core.exceptions import ObjectDoesNotExist
@@ -8,10 +8,10 @@ from canvas.models import Canvas, Item
 from canvas.forms import CanvasForm, ItemForm, ExtendedItemForm
 
 @login_required
+@render_to('canvas/index.html')
 def list(request):
     canvas_list = Canvas.objects.all().filter(owner=request.user).order_by('name')
-    context = {'canvas_list': canvas_list}
-    return render(request, 'canvas/index.html', context)
+    return {'canvas_list': canvas_list}
 
 @login_required
 def show(request, canvas_id):
